@@ -1,4 +1,5 @@
 #!/bin/bash
+pip install requests
 cd main/
 python setup.py sdist
 cd dist 

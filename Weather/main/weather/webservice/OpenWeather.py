@@ -3,7 +3,7 @@ from requests.exceptions import ConnectionError
 from time import time
 
 def verifyCity(city):
-	url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&uk&APPID=9ee969687e25812a1e19a77054ab4003".format(city[1], city[2])
+	url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&uk&APPID=9ee969687e25812a1e19a77054ab4003&units=metric".format(city[1], city[2])
 	try:
 		reponse = requests.get(url)
 		weather = reponse.json()["main"]
@@ -30,3 +30,5 @@ def verifyCity(city):
 		location += "Presion: Error webservice\n"
 		location += "humedad: Error webservice\n"
 		return location
+	finally:
+		print(location)
