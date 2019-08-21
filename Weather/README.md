@@ -20,5 +20,5 @@ Reporte
 ----------------
 Si desea generar el pdf correspondiente al archivo report/Report.tex, donde se muestran los principales puntos en el desarrollo del programa ejecuta el script report.sh, el script se ejecuta de la siguiente manera.
 ```
-./test.sh
+./report.sh
 ```
