@@ -1,34 +1,35 @@
 import requests
 from requests.exceptions import ConnectionError
-from time import time
 
 def verifyCity(city):
+	"""
+	Dadas la longitud y latitud de una ciudad, regresa el clima de dicha ciudad o lugar en tiempo real.
+
+	:param city: ciudad de la que se quiere conocer el clima.
+	:param l:
+	"""
 	url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&uk&APPID=9ee969687e25812a1e19a77054ab4003&units=metric".format(city[1], city[2])
 	try:
 		reponse = requests.get(url)
-		weather = reponse.json()["main"]
-		location = "Cuidad: {}, lat: {}, lon: {} \n".format(city[0],city[1],city[2])
-		location += "Temperatura: {}\n".format(weather["temp"])
-		location += "Presion: {}\n".format(weather["pressure"])
-		location += "humedad: {}\n".format(weather["humidity"])
-		return location
+		mainWeather = reponse.json()["main"]
+		location = "Ciudad: {}, lat: {}, lon: {} \n".format(city[0],city[1],city[2])
+		location += "Temperatura: {}°C\n".format(mainWeather["temp"])
+		location += "Presión: {}\n".format(mainWeather["pressure"])
+		location += "humedad: {}\n".format(mainWeather["humidity"])
 	except KeyError:
-		location = "Cuidad: {}, lat: {}, lon: {} \n".format(city[0],city[1],city[2])
-		location += "Temperatura: Error en coordenas"
-		location += "Presion: Error en coordenas"
-		location += "humedad: Error en coordenas"
-		return location
+		location = "Ciudad: {}, lat: {}, lon: {} \n".format(city[0],city[1],city[2])
+		location += "Temperatura: Error en coordenadas\n"
+		location += "Presión: Error en coordenadas\n"
+		location += "humedad: Error en coordenadas\n"
 	except ConnectionError:
-		location = "Cuidad: {}, lat: {}, lon: {} \n".format(city[0],city[1],city[2])
-		location += "Temperatura: Error en conexion\n"
-		location += "Presion: Error en conexion\n"
-		location += "humedad: Error en conexions\n"
-		return location
+		location = "Ciudad: {}, lat: {}, lon: {} \n".format(city[0],city[1],city[2])
+		location += "Temperatura: Error en conexión\n"
+		location += "Presión: Error en conexión\n"
+		location += "humedad: Error en conexión\n"
 	except:
-		location = "Cuidad: {}, lat: {}, lon: {} \n".format(city[0],city[1],city[2])
+		location = "Ciudad: {}, lat: {}, lon: {} \n".format(city[0],city[1],city[2])
 		location += "Temperatura: Error webservice\n"
-		location += "Presion: Error webservice\n"
+		location += "Presión: Error webservice\n"
 		location += "humedad: Error webservice\n"
-		return location
 	finally:
-		print(location)
+		return location
